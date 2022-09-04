@@ -1,0 +1,46 @@
+---------------------------------------------------------------------------
+ParserError                               Traceback (most recent call last)
+<ipython-input-146-9a32da54b40f> in <module>()
+----> 1 df = pd.read_csv('tmp.dat',error_bad_lines=False,header=None,names=                 ['date','followers','username','location','tweet'],                 delimiter=',',index_col=False ,encoding='latin_1')
+      2 df.shape[0]
+      3 df.drop_duplicates(inplace=True)
+
+~\Anaconda3\lib\site-packages\pandas\io\parsers.py in parser_f(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, escapechar, comment, encoding, dialect, tupleize_cols, error_bad_lines, warn_bad_lines, skipfooter, doublequote, delim_whitespace, low_memory, memory_map, float_precision)
+    676                     skip_blank_lines=skip_blank_lines)
+    677 
+--> 678         return _read(filepath_or_buffer, kwds)
+    679 
+    680     parser_f.__name__ = name
+
+~\Anaconda3\lib\site-packages\pandas\io\parsers.py in _read(filepath_or_buffer, kwds)
+    444 
+    445     try:
+--> 446         data = parser.read(nrows)
+    447     finally:
+    448         parser.close()
+
+~\Anaconda3\lib\site-packages\pandas\io\parsers.py in read(self, nrows)
+   1034                 raise ValueError('skipfooter not supported for iteration')
+   1035 
+-> 1036         ret = self._engine.read(nrows)
+   1037 
+   1038         # May alter columns / col_dict
+
+~\Anaconda3\lib\site-packages\pandas\io\parsers.py in read(self, nrows)
+   1846     def read(self, nrows=None):
+   1847         try:
+-> 1848             data = self._reader.read(nrows)
+   1849         except StopIteration:
+   1850             if self._first_chunk:
+
+pandas\_libs\parsers.pyx in pandas._libs.parsers.TextReader.read()
+
+pandas\_libs\parsers.pyx in pandas._libs.parsers.TextReader._read_low_memory()
+
+pandas\_libs\parsers.pyx in pandas._libs.parsers.TextReader._read_rows()
+
+pandas\_libs\parsers.pyx in pandas._libs.parsers.TextReader._tokenize_rows()
+
+pandas\_libs\parsers.pyx in pandas._libs.parsers.raise_parser_error()
+
+ParserError: Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
